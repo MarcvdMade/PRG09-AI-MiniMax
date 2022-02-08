@@ -31,6 +31,19 @@ class GameAI {
         console.log("AI move took " + (t1 - t0) + " milliseconds.");
 
         let scores = [3, 5, 2, 9, 12, 5, 23, 23];
+        /**
+         * first max so 5
+         * then min so 2
+         * then max so 12
+         * then min 23
+         * 
+         * new row
+         * then max so 5
+         * then min so 12
+         * 
+         * new row
+         * max so 12
+         */
         let n = scores.length;
         let h = this.log2(n);
         let res = this.miniMax(0, 0, true, scores, h);
