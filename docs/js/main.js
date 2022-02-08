@@ -235,6 +235,11 @@ class GameAI {
         gameState.knightPositions[i] = legalMoves[j];
         let t1 = performance.now();
         console.log("AI move took " + (t1 - t0) + " milliseconds.");
+        let scores = [3, 5, 2, 9, 12, 5, 23, 23];
+        let n = scores.length;
+        let h = this.log2(n);
+        let res = this.miniMax(0, 0, true, scores, h);
+        console.log("The optimal value is : " + res);
     }
     static miniMax(depth, index, isMax, scores, height) {
         if (depth == height)
@@ -245,6 +250,9 @@ class GameAI {
         else {
             return Math.min(this.miniMax(depth + 1, index * 2, true, scores, height), this.miniMax(depth + 1, index * 2 + 1, true, scores, height));
         }
+    }
+    static log2(n) {
+        return (n == 1) ? 0 : 1 + this.log2(n / 2);
     }
 }
 class King extends ChessPiece {

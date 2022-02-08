@@ -30,6 +30,11 @@ class GameAI {
         let t1 = performance.now();
         console.log("AI move took " + (t1 - t0) + " milliseconds.");
 
+        let scores = [3, 5, 2, 9, 12, 5, 23, 23];
+        let n = scores.length;
+        let h = this.log2(n);
+        let res = this.miniMax(0, 0, true, scores, h);
+        console.log( "The optimal value is : "  +res);
     }
 
     /**
@@ -51,6 +56,11 @@ class GameAI {
             return Math.min(this.miniMax(depth + 1, index * 2, true, scores, height),
             this.miniMax(depth + 1, index * 2 + 1, true, scores, height));
         }
+    }
+
+    public static log2(n: any): any
+    {
+    return (n==1)? 0 : 1 + this.log2(n/2);
     }
 
 }
